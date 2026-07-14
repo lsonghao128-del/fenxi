@@ -1470,7 +1470,7 @@ window.PRODUCT_ANALYSIS_DATA = {
           "grossProfit": 17472326.8227273,
           "sales": 1113,
           "netRevenue": 29343600.0,
-          "grossOrder": null,
+          "grossOrder": 30689600.0,
           "productAmount": 28022000,
           "tax": 2667600.0,
           "quadrant": "lowHigh",
@@ -2291,7 +2291,7 @@ window.PRODUCT_ANALYSIS_DATA = {
       "grossProfit": 17472326.8227273,
       "sales": 1113,
       "netRevenue": 29343600.0,
-      "grossOrder": null,
+      "grossOrder": 30689600.0,
       "productAmount": 28022000,
       "tax": 2667600.0
     },
