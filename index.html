@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>产品类型销量毛利分析</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">销量排行 / 按商品类型分析</p>
+          <h1>销量 × 利率四象限分析</h1>
+        </div>
+        <div class="summary-strip" aria-label="核心指标">
+          <div><span id="metric-count">0</span><small>商品数</small></div>
+          <div><span id="metric-sales">0</span><small>总销量</small></div>
+          <div><span id="metric-margin">0%</span><small>平均利率</small></div>
+        </div>
+      </header>
+
+      <section class="mode-bar" aria-label="页面切换">
+        <button class="mode-button active" type="button" data-mode="analysis">四象限分析</button>
+        <button class="mode-button" type="button" data-mode="raw">完整数据表</button>
+      </section>
+
+      <section id="analysis-view">
+        <section class="type-bar" aria-label="商品类型切换">
+          <button class="type-button active" type="button" data-category="主食">主食</button>
+          <button class="type-button" type="button" data-category="饮品">饮品</button>
+          <button class="type-button" type="button" data-category="小食">小食</button>
+        </section>
+
+        <section id="drink-view-bar" class="drink-view-bar" aria-label="饮品分析方式" hidden>
+          <span>饮品口径</span>
+          <button class="drink-view-button active" type="button" data-drink-view="detail">规格明细</button>
+          <button class="drink-view-button" type="button" data-drink-view="summary">商品汇总</button>
+        </section>
+
+        <section class="analysis-grid">
+          <aside class="side-stack" id="left-tables" aria-label="低利率象限清单"></aside>
+
+          <section class="chart-area" aria-label="互动四象限图">
+            <div class="chart-header">
+              <div>
+                <h2 id="chart-title">主食四象限</h2>
+                <p id="chart-subtitle">横轴：利率，纵轴：销量。鼠标移到点位上查看详情。</p>
+              </div>
+              <div class="chart-tools">
+                <label class="chart-search">
+                  <span>搜索</span>
+                  <input id="analysis-search" type="search" list="analysis-search-list" placeholder="中文 / 印尼名 / 编号" />
+                </label>
+                <datalist id="analysis-search-list"></datalist>
+                <div class="search-status" id="analysis-search-status" aria-live="polite"></div>
+                <div class="zoom-controls" aria-label="四象限图缩放控制">
+                  <button type="button" data-zoom-action="out" title="缩小">-</button>
+                  <button type="button" data-zoom-action="reset" title="重置视图">重置</button>
+                  <button type="button" data-zoom-action="in" title="放大">+</button>
+                </div>
+                <div class="legend" id="legend"></div>
+              </div>
+            </div>
+            <div class="chart-wrap">
+              <svg id="quadrant-chart" role="img" aria-label="销量和利率四象限散点图"></svg>
+              <div id="tooltip" class="tooltip" hidden></div>
+            </div>
+          </section>
+
+          <aside class="side-stack" id="right-tables" aria-label="高利率象限清单"></aside>
+        </section>
+      </section>
+
+      <section id="raw-view" class="data-section" hidden>
+        <div class="section-head">
+          <div>
+            <h2>总表经营数据</h2>
+            <p>来自 Excel 总表，支持按分类筛选、商品搜索和数字列排序。</p>
+          </div>
+          <div class="table-controls">
+            <label class="search-box">
+              <span>分类</span>
+              <select id="category-filter">
+                <option value="all">全部</option>
+                <option value="主食">主食</option>
+                <option value="饮品">饮品</option>
+                <option value="小食">小食</option>
+              </select>
+            </label>
+            <label class="search-box">
+              <span>搜索</span>
+              <input id="search-input" type="search" placeholder="输入商品名称或规格" />
+            </label>
+          </div>
+        </div>
+
+        <div class="column-controls" id="column-controls" aria-label="显示字段"></div>
+
+        <div class="table-scroll">
+          <table id="total-table">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="./data/data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
